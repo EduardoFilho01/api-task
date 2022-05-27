@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -17,12 +20,12 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/tarefa', 'TarefaController@mostrarTodasTarefas');
+Route::group(['prefix' => 'tarefa'],function () {
+   Route::get('/', 'TarefaController@mostrarTodasTarefas');
+   Route::post('/adicionar', 'TarefaController@adicionarTarefa');
+   Route::put('{id}/atualizar', 'TarefaController@atualizarTarefa');
+   Route::delete('{id}/deletar', 'TarefaController@deletarTarefa');
+   Route::put('{id}/atualizar/status', 'TarefaController@updateStatusTarefa');
 
-$router->post('/tarefa/adicionar', 'TarefaController@adicionarTarefa');
+});
 
-$router->put('/tarefa/{id}/atualizar', 'TarefaController@atualizarTarefa');
-
-$router->delete('tarefa/{id}/deletar', 'TarefaController@deletarTarefa');
-
-$router->put('/tarefa/{id}/atualizar/status', 'TarefaController@updateStatusTarefa');
