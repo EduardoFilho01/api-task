@@ -24,3 +24,5 @@ $router->post('/tarefa/adicionar', 'TarefaController@adicionarTarefa');
 $router->put('/tarefa/{id}/atualizar', 'TarefaController@atualizarTarefa');
 
 $router->delete('tarefa/{id}/deletar', 'TarefaController@deletarTarefa');
+
+$router->put('/tarefa/{id}/atualizar/status', 'TarefaController@updateStatusTarefa');

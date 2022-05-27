@@ -58,5 +58,16 @@ class TarefaController extends Controller
         return response()->json('Deletado com sucesso!', 200);
     }
 
+    public function updateStatusTarefa($id, Request $request )
+    {
+        $tarefa = Tarefas::find($id);
+
+        $tarefa->feito = $request->feito;
+
+        $tarefa->save();
+
+        return response()->json($tarefa);
+    }
+
 
 }
